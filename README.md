@@ -1,7 +1,8 @@
 Freshly merged
 
 I'm making some new changes on Alienware
-
+Woot I'm messing around.
 Now for the dell
 
-I'm going to make some changes and commit them. 
+I'm replying back to court.
+
