@@ -12,7 +12,9 @@ output:
   word_document:
     toc: yes
     toc_depth: '3'
+name: Courtney Walker 
 date: 'Assigned: August 31, 2018'
+date 'Completed: September 2, 2018'
 ---
 
 
@@ -23,6 +25,7 @@ This homework is intended to serve three main purposes: (1) familiarize you with
 This homework is due by **9:30am on Tuesday, September 11**.  To complete this assignment, follow these steps:
 
 1. Answer the questions below in a format for which you are comfortable (e.g., LaTeX, $\texttt{R}$, Word, paper, etc.).
+
 
 2. Convert this work to a pdf and name it lastname1.pdf (replacing 'lastname' with your last name in lowercase).
 
@@ -36,6 +39,21 @@ This homework is due by **9:30am on Tuesday, September 11**.  To complete this a
 Uber, AirBnb and Stata have 3000, 1500, and 800 employees, respectively, and 30, 45, and 65 percent of these employees respectively are women.  Resignations are equally likely among companies and genders.  One woman resigns.  What is the probability she worked for Uber?
 
 
+```{r}
+#Uber  -3000 (30% women) 
+#AirBnb-1500 (45% women) 
+#Stata -800  (65% women)
+
+denominator <- (3000*(.3)+ 1500*(.45)+800*(.65))
+denominator 
+numerator <-3000*(.3)
+numerator 
+
+probability <-(numerator/denominator)
+probability
+#The probability that the female employee that resigns will be a woman is .43
+
+```
 
 
 ### Problem 2: probability refresher 2
@@ -43,6 +61,11 @@ Uber, AirBnb and Stata have 3000, 1500, and 800 employees, respectively, and 30,
 You flip four fair coins.  Assuming the flips are independent, what is the pmf for the number of tails flipped?
 
 
+```{r}
+#I don't know how to program this - need to ask about it in class. 
+
+
+```
 
 
 
