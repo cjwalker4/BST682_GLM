@@ -84,9 +84,9 @@ Do problem 1.6 (a,b) from our text.
 
 ```{r}
 #a - create the proportion 
-ds_from_text$prop_ftom <- (ds_from_text$females/(ds_from_text$females+ds_from_text$males))
+#ds_from_text$prop_ftom <- (ds_from_text$females/(ds_from_text$females+ds_from_text$males))
 
-View(ds_from_text)
+#View(ds_from_text)
 ```
 
 ```{r}
@@ -113,10 +113,10 @@ Using the data from `Table 2.3 Birthweight and gestational age.xls`, calculate b
 You will inevitably use the Google to problem solve with programming in R -- many of you already do.  Having go to resources for answering your questions and/or developing new skills can be quite helpful.  Search around for what might be (or already is) a resource you will turn to as you improve your R skills.  Give the site and url.  What, in particular, makes this suitable for you?
 
 ```{r}
-I have used this a ton to get used to the nomenclature in r as well as practice a bit - 
+#I have used this a ton to get used to the nomenclature in r as well as practice a bit - 
 #  http://homerhanumat.github.io/tigerstats/instructorNotes.html#shiny_apps
 
-I also really enjoy Andy Field - 
+#I also really enjoy Andy Field - 
  # I've used this book for class (and I actually enjoy reading it)
 #https://uk.sagepub.com/en-gb/eur/discovering-statistics-using-r/book236067
 
