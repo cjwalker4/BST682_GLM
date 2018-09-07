@@ -65,6 +65,7 @@ You flip four fair coins.  Assuming the flips are independent, what is the pmf f
 #I don't know how to program this - need to ask about it in class. 
 #Thought - convert to a word doc, insert forumula and save it as pdf. 
 
+#https://math.stackexchange.com/questions/927047/pmf-of-number-of-heads-of-4-coin-tosses
 
 ```
 
@@ -74,7 +75,25 @@ You flip four fair coins.  Assuming the flips are independent, what is the pmf f
 
 Do problem 1.6 (a,b) from our text.
 
+```{r}
+#Page 17 in the text 
 
+#library(readxl) ds_from_text <- read_excel("Homework1/1.6.xlsx", n_max = 17)
+#View(ds_from_text)
+
+```
+
+```{r}
+#a - create the proportion 
+#ds_from_text$prop_ftom <- (ds_from_text$females/(ds_from_text$females+ds_from_text$males))
+
+#View(ds_from_text)
+```
+
+```{r}
+#b- do in word 
+
+```
 
 
 ### Problem 4: probability refresher 4
@@ -103,13 +122,35 @@ Using the data from `Table 2.3 Birthweight and gestational age.xls`, calculate b
 
 You will inevitably use the Google to problem solve with programming in R -- many of you already do.  Having go to resources for answering your questions and/or developing new skills can be quite helpful.  Search around for what might be (or already is) a resource you will turn to as you improve your R skills.  Give the site and url.  What, in particular, makes this suitable for you?
 
+```{r}
+#I have used this a ton to get used to the nomenclature in r as well as practice a bit - 
+#  http://homerhanumat.github.io/tigerstats/instructorNotes.html#shiny_apps
+
+#I also really enjoy Andy Field - 
+ # I've used this book for class (and I actually enjoy reading it)
+#https://uk.sagepub.com/en-gb/eur/discovering-statistics-using-r/book236067
+
+
+```
 
 
 ### Problem 7: R intro 2
 
 Import the data from `Table 2.3 Birthweight and gestational age.xls` into R.  Each observation should be a single row.  *Tip*: I added a second sheet to make this easier if you prefer. Use the `Import Dataset` functionality in RStudio's `Environment` tab and select Sheet 2.  This simple example shows why some abhor Excel... *Tip 2*: Use the `readxl` package.
 
+```{r}
+library(readxl)
+ X2_3 <- read_excel("Homework1/2.3.xlsx", 
++     sheet = "Sheet2")
+ View(X2_3)
+```
+
+
 Plot birthweight by age and give each gender a different color on the same plot.  Now, do the same plot stratified by gender (Tip: look at the Introduction to R notes).  What observations do you have?
+
+```{r}
+
+```
 
 
 
