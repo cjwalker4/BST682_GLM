@@ -60,20 +60,7 @@ probability
 
 You flip four fair coins.  Assuming the flips are independent, what is the pmf for the number of tails flipped?
 
-
-```{r}
-$P(X=x)=((n),(x)) p^x(1-p)^(n-x)$
-
-  
-  
-```
-
-```{r}
-install.packages("amsmath",  repos="http://cran.us.r-project.org")
-
-```
-
-
+$$P(X=x)= {{n}\choose{x}} p^x(1-p)^{n-x}$$
 ### Problem 3: probability refresher 3
 
 Do problem 1.6 (a,b) from our text.
@@ -101,22 +88,25 @@ Do problem 1.6 (a,b) from our text.
 
 ### Problem 4: probability refresher 4
 
-
 Assume annual rainfall in Lexington is normally distributed with a mean of 40 inches and standard deviation of 4. What is the probability that it takes more than 7 years before having a rainfall over 55 inches?  What assumptions are you making?
 
 ```{r}
 #1) That the data is normally distributed 
 #2) Year to year, the rainfall is independent
 
-#Let's say x is the annual rainfall
-#P(X>50)=1-P(X<=50)
+```
+$$P(X>55)=1-(P \leq 55)$$
 
+
+$$1-\int\limits_{-\infty}^{55}{\frac{1}{4\sqrt2\pi}}{e^{-\frac{1}{2}{(\frac{x-40}{7})}^2}dx}$$
+
+$$1-\int\limits_{-\infty}^{55}{\frac{1}{4\sqrt2\pi}}$$
+
+```{r}
+need to finish 
 ```
 
-
-
 ### Problem 5: linear models refresher
-
 Using the data from `Table 2.3 Birthweight and gestational age.xls`, calculate by matrix algebra the effect estimate resulting from regressing birth weight on gestational age.
 
 
@@ -142,10 +132,10 @@ You will inevitably use the Google to problem solve with programming in R -- man
 Import the data from `Table 2.3 Birthweight and gestational age.xls` into R.  Each observation should be a single row.  *Tip*: I added a second sheet to make this easier if you prefer. Use the `Import Dataset` functionality in RStudio's `Environment` tab and select Sheet 2.  This simple example shows why some abhor Excel... *Tip 2*: Use the `readxl` package.
 
 ```{r}
-library(readxl)
- X2_3 <- read_excel("Homework1/2.3.xlsx", 
-+     sheet = "Sheet2")
- View(X2_3)
+#library(readxl)
+# X2_3 <- read_excel("Homework1/2.3.xlsx", 
+###+     sheet = "Sheet2")
+ #View(X2_3)
 ```
 
 
