@@ -103,7 +103,7 @@ $$1-\int\limits_{-\infty}^{55}{\frac{1}{4\sqrt2\pi}}{e^{-\frac{1}{2}{(\frac{x-40
 $$1-\int\limits_{-\infty}^{55}{\frac{1}{4\sqrt2\pi}}$$
 
 ```{r}
-need to finish 
+need to finish but not sure how...
 ```
 
 ### Problem 5: linear models refresher
@@ -151,14 +151,19 @@ View(table2_3)
 Plot birthweight by age and give each gender a different color on the same plot.  Now, do the same plot stratified by gender (Tip: look at the Introduction to R notes).  What observations do you have?
 
 ```{r}
+filepath<-file.path("C:","Users","Court","Documents","BST682_GLM","Homework1","table23.xls")
+print(filepath)
+table<-read.delim(filepath)
+```
+
+```{r}
 xyplot('birth weight' ~ 'gestational age',
 	data = table2_3,
 	groups = sex,
 	auto.key = list(
 		space = "right",
-		title = "sex",
-		cex.title = 1,
-		columns = 1), 
+		title = "sex"
+		), 
 	main = "Birth Weight by Gestational Age",)
 
 ```
