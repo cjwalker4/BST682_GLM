@@ -62,13 +62,16 @@ You flip four fair coins.  Assuming the flips are independent, what is the pmf f
 
 
 ```{r}
-#I don't know how to program this - need to ask about it in class. 
-#Thought - convert to a word doc, insert forumula and save it as pdf. 
+$P(X=x)=((n),(x)) p^x(1-p)^(n-x)$
 
-#https://math.stackexchange.com/questions/927047/pmf-of-number-of-heads-of-4-coin-tosses
-
+  
+  
 ```
 
+```{r}
+install.packages("amsmath",  repos="http://cran.us.r-project.org")
+
+```
 
 
 ### Problem 3: probability refresher 3
