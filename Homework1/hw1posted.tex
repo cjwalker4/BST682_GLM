@@ -1,0 +1,184 @@
+\documentclass[]{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+\else % if luatex or xelatex
+  \ifxetex
+    \usepackage{mathspec}
+  \else
+    \usepackage{fontspec}
+  \fi
+  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+\fi
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+\hypersetup{unicode=true,
+            pdftitle={Homework 1 - BST682},
+            pdfborder={0 0 0},
+            breaklinks=true}
+\urlstyle{same}  % don't use monospace font for urls
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+\IfFileExists{parskip.sty}{%
+\usepackage{parskip}
+}{% else
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{0}
+% Redefines (sub)paragraphs to behave more like sections
+\ifx\paragraph\undefined\else
+\let\oldparagraph\paragraph
+\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+\let\oldsubparagraph\subparagraph
+\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+
+%%% Use protect on footnotes to avoid problems with footnotes in titles
+\let\rmarkdownfootnote\footnote%
+\def\footnote{\protect\rmarkdownfootnote}
+
+%%% Change title format to be more compact
+\usepackage{titling}
+
+% Create subtitle command for use in maketitle
+\newcommand{\subtitle}[1]{
+  \posttitle{
+    \begin{center}\large#1\end{center}
+    }
+}
+
+\setlength{\droptitle}{-2em}
+
+  \title{Homework 1 - BST682}
+    \pretitle{\vspace{\droptitle}\centering\huge}
+  \posttitle{\par}
+    \author{}
+    \preauthor{}\postauthor{}
+      \predate{\centering\large\emph}
+  \postdate{\par}
+    \date{Assigned: August 31, 2018}
+
+
+\begin{document}
+\maketitle
+
+{
+\setcounter{tocdepth}{3}
+\tableofcontents
+}
+\subsubsection{Homework 1 Overview}\label{homework-1-overview}
+
+This homework is intended to serve three main purposes: (1) familiarize
+you with our course homework submission policy (while satisfying the new
+Title IV regulations), (2) refresh your probability and linear modeling
+skills, and (3) introduce you to R. Give complete solutions, justifying
+your response when necessary.
+
+This homework is due by \textbf{9:30am on Tuesday, September 11}. To
+complete this assignment, follow these steps:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Answer the questions below in a format for which you are comfortable
+  (e.g., LaTeX, \(\texttt{R}\), Word, paper, etc.).
+\item
+  Convert this work to a pdf and name it lastname1.pdf (replacing
+  `lastname' with your last name in lowercase).
+\item
+  For any questions that require programming, provide a similarly-named
+  file that includes fully-reproducible code. (e.g., lastname1.r,
+  lastname1.rmd or lastname1.sas)
+\item
+  Submit these files to Canvas.
+\end{enumerate}
+
+\subsubsection{Problem 1: probablity refresher
+1}\label{problem-1-probablity-refresher-1}
+
+Uber, AirBnb and Stata have 3000, 1500, and 800 employees, respectively,
+and 30, 45, and 65 percent of these employees respectively are women.
+Resignations are equally likely among companies and genders. One woman
+resigns. What is the probability she worked for Uber?
+
+\subsubsection{Problem 2: probability refresher
+2}\label{problem-2-probability-refresher-2}
+
+You flip four fair coins. Assuming the flips are independent, what is
+the pmf for the number of tails flipped?
+
+\subsubsection{Problem 3: probability refresher
+3}\label{problem-3-probability-refresher-3}
+
+Do problem 1.6 (a,b) from our text.
+
+\subsubsection{Problem 4: probability refresher
+4}\label{problem-4-probability-refresher-4}
+
+Assume annual rainfall in Lexington is normally distributed with a mean
+of 40 inches and standard deviation of 4. What is the probability that
+it takes more than 7 years before having a rainfall over 55 inches? What
+assumptions are you making?
+
+\subsubsection{Problem 5: linear models
+refresher}\label{problem-5-linear-models-refresher}
+
+Using the data from
+\texttt{Table\ 2.3\ Birthweight\ and\ gestational\ age.xls}, calculate
+by matrix algebra the effect estimate resulting from regressing birth
+weight on gestational age.
+
+\subsubsection{Problem 6: R intro 1}\label{problem-6-r-intro-1}
+
+You will inevitably use the Google to problem solve with programming in
+R -- many of you already do. Having go to resources for answering your
+questions and/or developing new skills can be quite helpful. Search
+around for what might be (or already is) a resource you will turn to as
+you improve your R skills. Give the site and url. What, in particular,
+makes this suitable for you?
+
+\subsubsection{Problem 7: R intro 2}\label{problem-7-r-intro-2}
+
+Import the data from
+\texttt{Table\ 2.3\ Birthweight\ and\ gestational\ age.xls} into R. Each
+observation should be a single row. \emph{Tip}: I added a second sheet
+to make this easier if you prefer. Use the \texttt{Import\ Dataset}
+functionality in RStudio's \texttt{Environment} tab and select Sheet 2.
+This simple example shows why some abhor Excel\ldots{} \emph{Tip 2}: Use
+the \texttt{readxl} package.
+
+Plot birthweight by age and give each gender a different color on the
+same plot. Now, do the same plot stratified by gender (Tip: look at the
+Introduction to R notes). What observations do you have?
+
+\subsubsection{Problem 8: R intro 3}\label{problem-8-r-intro-3}
+
+Using \texttt{R} and \texttt{lm}, confirm your regression parameter
+estimate in Problem 5.
+
+
+\end{document}
