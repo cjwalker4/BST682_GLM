@@ -108,7 +108,16 @@ need to finish
 
 ### Problem 5: linear models refresher
 Using the data from `Table 2.3 Birthweight and gestational age.xls`, calculate by matrix algebra the effect estimate resulting from regressing birth weight on gestational age.
-
+```{r}
+ols <- function(XX, yy) {
+missing.data <- apply(is.na(XX), 1, any) | is.na(yy)
+X <- cbind(Intercept=1, as.matrix(XX[!missing.data,]))
+y <- yy[!missing.data]
+solve(crossprod(X)) %*% t(X) %*% y
+}
+ols(table2_3[,-2], table2_3$`birth weight`)
+##does this match what you did?
+```
 
 
 ### Problem 6: R intro 1
@@ -132,18 +141,40 @@ You will inevitably use the Google to problem solve with programming in R -- man
 Import the data from `Table 2.3 Birthweight and gestational age.xls` into R.  Each observation should be a single row.  *Tip*: I added a second sheet to make this easier if you prefer. Use the `Import Dataset` functionality in RStudio's `Environment` tab and select Sheet 2.  This simple example shows why some abhor Excel... *Tip 2*: Use the `readxl` package.
 
 ```{r}
-#library(readxl)
-# X2_3 <- read_excel("Homework1/2.3.xlsx", 
-###+     sheet = "Sheet2")
- #View(X2_3)
+library(readxl)
+table2_3 <- read_excel("Homework1/table2.3.xls")
+View(table2_3)
+
 ```
 
 
 Plot birthweight by age and give each gender a different color on the same plot.  Now, do the same plot stratified by gender (Tip: look at the Introduction to R notes).  What observations do you have?
 
 ```{r}
+xyplot('birth weight' ~ 'gestational age',
+	data = table2_3,
+	groups = sex,
+	auto.key = list(
+		space = "right",
+		title = "sex",
+		cex.title = 1,
+		columns = 1), 
+	main = "Birth Weight by Gestational Age",)
 
 ```
+
+```{r}
+xyplot(ideal_ht ~ height | sex,
+	data = m111survey,
+	layout = c(2,1),
+	groups = sex,
+	auto.key = list(
+		space = "right",
+		title = "Sex",
+		cex.title = 1,
+		columns = 1))
+```
+
 
 
 
