@@ -77,48 +77,28 @@ $$P(X=k) = \frac{{{x}\choose{k}}}{2^x}$$
 $$P(X=k) = \frac{{{4}\choose{1}}}{2^4}$$
 
 ### Problem 3: probability refresher 3
-
 Do problem 1.6 (a,b) from our text.(Page 17)
+
+####1.6a - create the proportion 
+
 ```{r}
 table16<-read_xlsx('table16.xlsx')
-View(table16)
-```
-```{r}
-####1.6a - create the proportion 
 table16$prop_ftom <- (table16$females/ (table16$females+table16$males))
 View(table16)
 ```
 
-```{r}
+
 ####1.6b -  MLE
- 
-```
-$$Y {\sim} Bin(n, \theta) with$$
-$$\theta \in \theta (0,1)$$ 
-The pmf is 
-$$f(y ; \theta)$$
-$$=(n C y) \theta ^y (1-\theta)^{n-y} $$
 
-for y=0...16
-
-$$\frac{df\theta}{d\theta}= \frac{d\theta^y(1-\theta)^{n-y}} {d \theta}$$
-
-$$=(n-y)(1-\theta)^{n-y-1}(-1)\theta^y+y(1-\theta)^{n-y}\theta^{y-1}$$
-$$=({-(n-y)\theta +y(1-\theta)})(1-\theta)^{n-y-1}\theta^{y-1}$$ 
-And 
-0<$\theta$<1
-when
-0 < y < n 
-$$f(0)=0$$
-$$f(1)=1$$
-and 
-$$L(\frac{y}{n})>0$$ 
-so that MLE= y/n 
-Therefore, the MLE is 
-
-$$\hat{\theta} =\sum \frac {Y_i}{n_i}=0.49$$
-
-(Got help from Shama)
+$$log(\theta)=\prod\limits_{i=0}^{n}{ f(y_i; \theta)}$$
+$$=\prod\limits_{i=0}^{n}{n_i \choose  {y_i}}\theta^{y_i}(1-\theta)^{n_i -y_i} $$
+$$=\theta^{\sum{y_i}}*(1-\theta)^{\sum{n_i-y_i} }*x $$
+$$Log(\theta)=\sum y_i * log(\theta) +\sum(n_i-y_i)*log(1-\theta)$$
+$$\frac{d}{d\theta}Log{\theta} = \frac{\sum y_i}{\theta}-\frac{\sum n_i - y_i}{1-\theta}$$
+$$0=\frac{\sum y_i}{\theta}-\frac{\sum n_i - y_i}{1-\theta}$$
+$$\sum y_i=\theta\sum y_i -\theta \sum n_i - \theta \sum y_i$$
+$$\theta = \frac{\sum y_i}{\sum n_i}$$
+$$\hat{\theta} =\frac {363}{734}=0.49$$
 
 ### Problem 4: probability refresher 4
 
