@@ -13,14 +13,13 @@ output:
     toc: yes
     toc_depth: '3'
 date: 'Assigned: August 31, 2018'
-name: 'Courtney Walker' 
+name: 'Courtney Walker'
 ---
 
 
 ```{r LoadPackages, include = FALSE}    
 library(readxl)
 library(tigerstats)
-
 # add other packages here
 ```
 
@@ -92,37 +91,34 @@ View(table16)
 
 ```{r}
 ####1.6b -  MLE
-#Let Yi denote the number of females and ni the number of progeny in
-##each group (i = 1, . . . , 16). Suppose the Yi's are independent random
-##variables each with the Binomial distribution
-
+ 
 ```
-$Y ~ Bin(n,\theta) with  \theta $
+$$Y {\sim} Bin(n, \theta) with$$
+$$\theta \in \theta (0,1)$$ 
+The pmf is 
+$$f(y ; \theta)$$
+$$=(n C y) \theta ^y (1-\theta)^{n-y} $$
 
-$Y\sim Bin(n, \theta)$ 
+for y=0...16
 
-#with  
-$\theta \in \theta {0,1}$
-#The pmf is 
-$f(y; \theta) =(n C y) \theta ^y (1-\theta)^{n-y} $
-#for y=0...16
+$$\frac{df\theta}{d\theta}= \frac{d\theta^y(1-\theta)^{n-y}} {d \theta}$$
 
-$\frac{df\theta}{d\theta}= \frac{d\theta^y(1-\theta)^{n-y}} {d \theta}$
-$=(n-y)(1-\theta)^{n-y-1}(-1)\theta^y+y(1-\theta)^{n-y}\theta^{y-1}$
-$=({-(n-y)\theta +y(1-\theta)})(1-\theta)^{n-y-1}\theta^{y-1}$ 
-$0<\theta<1$
-#When
-$0<y<n $
-$f(0)=0 $
-$f(1)=1$
-#and 
-$L(\frac{y}{n})>0$ 
-#so that MLE= y/n 
-#Therefore, the MLE is 
+$$=(n-y)(1-\theta)^{n-y-1}(-1)\theta^y+y(1-\theta)^{n-y}\theta^{y-1}$$
+$$=({-(n-y)\theta +y(1-\theta)})(1-\theta)^{n-y-1}\theta^{y-1}$$ 
+And 
+0<$\theta$<1
+when
+0 < y < n 
+$$f(0)=0$$
+$$f(1)=1$$
+and 
+$$L(\frac{y}{n})>0$$ 
+so that MLE= y/n 
+Therefore, the MLE is 
 
-$\hat{\theta} =\sum \frac {Y_i}{n_i}=0.49$
+$$\hat{\theta} =\sum \frac {Y_i}{n_i}=0.49$$
 
-#(Got help from Shama)
+(Got help from Shama)
 
 ### Problem 4: probability refresher 4
 
@@ -230,5 +226,3 @@ Using `R` and `lm`, confirm your regression parameter estimate in Problem 5.
 ```{r}
 lm(bweight ~ gestage, data=table23) 
 ```
-
-
