@@ -1,0 +1,169 @@
+---
+title: "Homework 1 - BST682"
+author: "Courtney Walker"
+output:
+  pdf_document:
+    toc: yes
+    toc_depth: '3'
+  html_document:
+    highlight: tango
+    theme: paper
+    toc: yes
+    toc_depth: 3
+  word_document:
+    toc: yes
+    toc_depth: '3'
+date: 'Assigned: September 23, 2018'
+---
+
+### Homework 3 Overview 
+
+
+We have gotten through our first two homeworks successfully - kudos!  
+
+Submission will now require correct naming and formatting as detailed below. Please read carefully and let me know if you have any questions.
+This homework is due by *9:30am on Tuesday, October 2*. To complete this assignment, follow these steps:  
+
+1. Answer the questions below in a format for which you are comfortable (e.g., LaTeX, R, Word, paper, etc.).  
+
+2. Convert this work to a pdf and name it lastnamexyz.pdf (replacing 'lastname' with your last name in lowercase) where xyz is the homework number. E.g., I would name the file: fardo3.pdf.  
+
+3. For any questions that require programming, provide a analogously-named file that includes fullyreproducible code. (e.g., lastnamexyz.rmd, lastnamexyz.r or lastnamexyz.sas) where xyz is the homeworkm number.  
+
+4. Submit these two files to Canvas.
+
+### Problem 1: Question  2.2 
+The weights, in kilograms, of twenty men before and after participation
+in a "waist loss" program are shown in Table 2.8 (Egger et al. 1999). We
+want to know if, on average, they retain a weight loss twelve months after
+the program.
+```{r include=FALSE}
+library(readxl)
+library(tigerstats)
+library(xtable)
+
+waist <- read_excel("C:/Users/court/Google Drive/UKY/Grad school/BST 682 - GLM - Fall 2018/Hmwk2/Waist.xls")
+```
+
+#### a) Use an unpaired t-test to test the hypothesis  
+
+```{r}
+favstats(~before,data=waist)
+favstats(~after,data=waist)
+t.test(waist$before, waist$after)
+```
+The independent samples t test comparing the waist of men before and after an exercise intervention is non significant (t=0.64,sf=38, p=0.52).
+
+#### b) Let $D_k$ = $Y_{1k} - Y_{2k}$, for $k=1,...,20$ formulate models for testing $H_0$ against $H_1$ 
+```{r}
+t.test(waist$before, waist$after, paired = TRUE)
+```
+A paired samples t-test was calculated to assess waist size pre and post intervention. There was a significant difference between pre and post waist size (t=2.87, df= 19, p-value=<0.01). 
+
+#### C) The analysis in (b) is a paired t-test which uses the natural relationship between the weights of the *same* person before and after teh program. Are the conclusions the same from (a) and (b).
+
+No. In the first test (a), there was no significant difference; in the second test, there was. 
+
+#### d) list the assumptions made for (a) and (b). Which analysis is more appropriate for these data?
+
+Assumptions of an Independent Samples T-test 
+An Independent samples t tests assumes equal variance, a dependent samples t-test does not. The paired samples t-test is more appropriate for the data. 
+
+### Problem 2: Question 2.4 
+Suppose you have the following data: 
+```{r}
+x<- c(1.0,1.2,1.4,1.6,1.8,2.0)
+Ey<-c(3.15,4.85,6.50,7.20,8.25,16.50)
+x_squared<-x^2
+q2<-merge(x,Ey)
+```
+
+and you wanted to fit a model wit=h 
+$$E(Y)=ln(\beta_0 +\beta_1x+\beta_2x^2)$$
+Write this model in the form of (2.13) specifying the vectors $y$ and $\beta$ and the matrix *X*
+
+$E(Y)= \begin{bmatrix} 3.15\\4.85\\6.50\\7.20\\8.25\\16.50 \end{bmatrix}$
+$Y=\begin{bmatrix} y_1\\y_2\\y_3\\y_4\\y_5\\y_6 \end{bmatrix}$
+$x= \begin{bmatrix} 1.0\\1.2\\1.4\\1.6\\1.8\\2.0 \end{bmatrix}$
+$x^2= \begin{bmatrix} 1.0\\1.44\\1.96\\2.56\\3.24\\4.0 \end{bmatrix}$
+$\beta=\begin{bmatrix} \beta_0\\\beta_1\\\beta_2\\ \end{bmatrix}$
+
+
+The model is 
+$$E(Y)=ln(\beta_0+\beta_1 \begin{bmatrix} 3.15\\4.85\\6.50\\7.20\\8.25\\16.50 \end{bmatrix} +\beta_2 \begin{bmatrix} 1.0\\1.44\\1.96\\2.56\\3.24\\4.0 \end{bmatrix})$$ 
+
+### Problem 3: 
+Show the the gamma distribution belongs to the exponential family. Use the following version with a mean parameterization. 
+$$f(y|\alpha, \beta)=\frac{1}{\Gamma(\alpha)\beta^\alpha}y^{\alpha-1}e^{\frac{-y}{\beta}}$$
+
+The gamma distribution looks like...
+$$exp=\frac{\theta y-b(\theta)}{\alpha(\phi)}+c(y,\phi)$$
+
+First find the log (take the log of both sides)
+$$log(f(x))=log(y^{\alpha-1}\beta^\alpha e^{-\beta y})-log(\Gamma(\alpha))=(\alpha - 1)log(y)+\alpha log(\beta)-\beta y -log(\Gamma(\alpha))$$
+Re-write it to get all of the terms on one side 
+$$log(f(x))=(\alpha-1)log(y)+\alpha log(\beta)-\beta y-log(\Gamma(\alpha))$$
+
+exponiate: 
+$$f(x)=exp[(\alpha-1)log(y)+\alpha log(\beta)-\beta y-log ~\Gamma(alpha)]$$
+rewrite (putting like terms together)
+$$f(x)=exp((-\beta y)+ \alpha log(\beta) (\alpha-1) log(y)- log ~ \Gamma(alpha))$$
+
+divide by negative alpha 
+
+$$exp(\frac{\frac{\beta y}{\alpha}+log(\beta)}{\frac{-1}{\alpha}}+(\alpha-1)log(y)-log(\Gamma(\alpha)))$$
+Move some pieces around 
+$\theta=\frac{\beta}{\alpha}$
+$\beta=\theta(\alpha)$
+$\beta=\frac{\theta}{\phi}=log(\beta)=log\theta-log\phi$
+$\alpha(\phi)=\frac{-1}{\alpha}$
+$\phi=\frac{1}{\alpha}$
+
+
+$$exp (\frac{y\theta-log\theta}{-\phi}+\frac{log\phi}{\phi}+(\frac{1}{\phi  }-1)log(y)-log\Gamma(\frac{1}{\phi})$$
+
+
+In the formulation on our slides what is $b(\theta)$ for the gamma?
+The meaan
+
+What is the EY?
+The expected value of y?
+
+### Problem 4 (Page 56, 3.7)
+Consider $N$ independent binary random variables $Y_i,...,Y_N$ with 
+$$P(Y_i=1)=\pi_i$$ and $$P(Y_I=0)=1-\pi_i$$
+The probability function of $Y_i$, the Bernoulli distribution $B(\pi)$ can be written as 
+$$\pi_i^{y_i}(1-\pi_i)^{1-y_i}$$
+where $y_i$=0 or 1
+
+#### a) Show that this probability function belongs to the exponential family of distributions.
+
+ 
+
+#### b) Show that the natural parameter is 
+$$log(\frac{\pi_i}{1-\pi_i})$$
+This function, the logarithm of the odds $\frac{\pi_i}{1-\pi_i}$ is called the *logit* function. 
+
+
+$$p(x)=\pi_i^{y_i}(1-\pi_i)^{1-y_i}$$
+$$=exp[log[\pi_i^{y_i}(1-\pi_i)^{1-y_i}]]$$
+$$=exp[xlog \pi +(1-x)log(1-\pi)]$$
+$$=exp[x log\frac{\pi}{1-\pi}+log(1-\pi)]$$
+$$exp[x\theta-log(1+e^\theta)]$$
+$$log(\frac{\pi_i}{1-\pi_i})$$
+so $\theta=log \frac{\pi}{1-\pi}$
+
+#### c) Show...
+$E(Y_i)=\pi_i$
+
+#### d) If the link function is: 
+$$g(\pi)=log(\frac{\pi}{1-\pi}=X^t\beta$$ show that this is equivalent to modelling the probability $\pi$ as: 
+$$\pi=\frac{e^{x~T\beta}}{1+e^{xT\beta}}$$
+
+which is the logistic function. 
+Sketch the graph of $\pi$ against $x$ in this case, taking $\beta_1$ and $\beta_2$ as constants. How would you interpret this graph if $x$ is the dose of an insecticide and $\pi$ is the probability of an insect dying?
+
+
+
+
+NOTE TO SELF: ~ in the math subscript puts a space! 
